@@ -20,7 +20,8 @@
 
         #left {
             position: relative;
-            background-image: url(background.png);
+            float: left;
+            background-image: url(image/background.png);
             width: 430px;
             height: 580px;
             background-size: 100% 100%;
@@ -47,40 +48,169 @@
             margin-top: -0.75em;
             font-family: 'Calibri';
         }
+
         #logo {
             height: 2em;
             float: left;
         }
-        #left-middle{
+
+        #left-middle {
+            margin-top: 1.5em;
             position: absolute;
-            
             width: 10em;
-            height: 10em;
+            height: 6em;
             font-size: 1.8em;
             color: #666666;
-            letter-spacing: 0.8em;
+            letter-spacing: 0.6em;
             text-align: center;
             line-height: 0.3em;
-            font-family: '华光中圆_CNKI';
+            font-family: '华文细黑';
+            left: 50%;
+            margin-left: -5em;
+        }
+
+        #right {
+            width: 320px;
+            height: 580px;
+            float: left;
+        }
+
+        #icons {
+            height: 3em;
+            margin: 0.5em;
+        }
+
+        .icon {
+            float: right;
+        }
+
+        .icon1 {
+            float: right;
+            margin-top: 0.5em;
+        }
+
+        #qq-wechat {
+            height: 5em;
+            position: relative;
+            margin-top: 3em;
+        }
+
+        #qq {
+            position: absolute;
+            left: 27%;
+        }
+
+        #qq-word {
+            position: absolute;
+            left: 28%;
+            color: #1E90FF
+        }
+
+        #wechat-word {
+            position: absolute;
+            right: 27%;
+            color: #999
+        }
+
+        #wechat {
+            position: absolute;
+            right: 27%;
+        }
+
+        .account-box {
+            position: relative;
+            height: 3em;
+            margin: 3em auto;
+            width: 15em;
+        }
+
+        input {
+            width: 80%;
+            outline-style: none;
+            border: 0px;
+            color: black;
+            font-size: 1.5em;
+        }
+
+        #qq-wechat-icon {
+            height: 4.5em;
+        }
+
+        input::-webkit-input-placeholder {
+            font-size: 15px;
+        }
+
+        hr {
+            height: 1px;
+            border: none;
+            border-top: 1px solid #D3D3D3;
         }
     </style>
 </head>
 
 <body style="background-color: #c9daf8;">
     <div id="login">
-        <!-- 左侧图片 -->
+        <!-- 左侧 -->
         <div id="left">
+            <!-- 左侧图标 -->
             <div id="left-top">
-                <img id="logo" src="tim.png" />
+                <img id="logo" src="image/tim.png" />
                 <div id="timbox">
                     <div id="tim">TIM</div>
                 </div>
             </div>
             <!-- 左侧文字 -->
             <div id="left-middle">
-                 <p>在线协作</p>
-                 <p>.</p>
-                 <p>永久免费</p>
+                <p>在线协作</p>
+                <p>.</p>
+                <p>永久免费</p>
+            </div>
+        </div>
+        <!-- 右侧 -->
+        <div id="right">
+            <!-- 右上角设置与退出 -->
+            <div id="icons">
+                <!-- 设置 -->
+                <svg viewBox="0 0 1024 1024" class="icon" xmlns="http://www.w3.org/2000/svg" width="40" height="30">
+                    <path d="M704.28672 309.20704l28.95872 28.9792L334.6432 736.78848l-28.95872-28.9792z" fill="#cdcdcd"></path>
+                    <path d="M341.03296 315.5968l398.60224 398.60224-28.95872 28.95872-398.60224-398.60224z" fill="#cdcdcd"></path>
+                </svg>
+                <!-- 退出 -->
+                <svg viewBox="0 0 1024 1024" class="icon" xmlns="http://www.w3.org/2000/svg" width="40" height="30">
+                    <path d="M700.75 857.16h-369.5a12 12 0 0 1-10.39-6l-184.76-320a12 12 0 0 1 0-12l184.76-320a12 12 0 0 1 10.39-6h369.5a12 12 0 0 1 10.39 6l184.76 320a12 12 0 0 1 0 12l-184.76 320a12 12 0 0 1-10.39 6z m-362.57-24h355.64l177.83-308-177.83-308H338.18l-177.83 308z"
+                        fill="#cdcdcd"></path>
+                    <path d="M516 667.16c-78.3 0-142-63.7-142-142s63.7-142 142-142 142 63.7 142 142-63.7 142-142 142z m0-260a118 118 0 1 0 118 118 118.13 118.13 0 0 0-118-118z"
+                        fill="#cdcdcd"></path>
+                </svg>
+            </div>
+            <!-- qq微信图标行 -->
+            <div id="qq-wechat">
+                <div id="qq-wechat-icon">
+                    <img id="qq" src="image/lightQQ.png" />
+                    <img id="wechat" src="image/darkWechat.png" />
+                </div>
+                <span id="qq-word">QQ登录</span>
+                <span id="wechat-word">微信登录</span>
+            </div>
+            <!-- 输入账号 -->
+            <div class="account-box">
+                <input placeholder="QQ号码/手机/邮箱" />
+                <svg class="icon1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" p-id="2012" width="20"
+                    height="20">
+                    <path d="M961.2 296.9c0 4.9-1.9 9.7-5.6 13.4L525.4 740.5c-7.4 7.4-19.4 7.4-26.9 0L68.4 310.3c-7.4-7.4-7.4-19.4 0-26.9 7.4-7.4 19.4-7.4 26.9 0L512 700.2l416.7-416.7c7.4-7.4 19.4-7.4 26.9 0 3.7 3.7 5.6 8.6 5.6 13.4z"
+                        fill="#bfbfbf"></path>
+                </svg>
+                <hr />
+            </div>
+            <!-- 输入账号 -->
+            <div class="account-box">
+                <input placeholder="QQ号码/手机/邮箱" />
+                <svg class="icon1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" p-id="2012" width="20"
+                    height="20">
+                    <path d="M961.2 296.9c0 4.9-1.9 9.7-5.6 13.4L525.4 740.5c-7.4 7.4-19.4 7.4-26.9 0L68.4 310.3c-7.4-7.4-7.4-19.4 0-26.9 7.4-7.4 19.4-7.4 26.9 0L512 700.2l416.7-416.7c7.4-7.4 19.4-7.4 26.9 0 3.7 3.7 5.6 8.6 5.6 13.4z"
+                        fill="#bfbfbf"></path>
+                </svg>
+                <hr />
             </div>
         </div>
     </div>

@@ -14,14 +14,17 @@
             margin-top: -290px;
             background-color: white;
             border-radius: 5px;
+            /* 该属性可设置的值包括阴影的X轴偏移量、Y轴偏移量、模糊半径、扩散半径和颜色 */
+            box-shadow: 0 0 9px 1px #999;
         }
 
         #left {
+            position: relative;
             background-image: url(background.png);
             width: 430px;
             height: 580px;
             background-size: 100% 100%;
-            border-radius: 5px 0px 0pxgit 5px;
+            border-radius: 5px 0px 0px 5px;
         }
 
         #left-top {
@@ -44,10 +47,21 @@
             margin-top: -0.75em;
             font-family: 'Calibri';
         }
-
         #logo {
             height: 2em;
             float: left;
+        }
+        #left-middle{
+            position: absolute;
+            
+            width: 10em;
+            height: 10em;
+            font-size: 1.8em;
+            color: #666666;
+            letter-spacing: 0.8em;
+            text-align: center;
+            line-height: 0.3em;
+            font-family: '华光中圆_CNKI';
         }
     </style>
 </head>
@@ -62,9 +76,13 @@
                     <div id="tim">TIM</div>
                 </div>
             </div>
+            <!-- 左侧文字 -->
+            <div id="left-middle">
+                 <p>在线协作</p>
+                 <p>.</p>
+                 <p>永久免费</p>
+            </div>
         </div>
-        <!-- 左侧文字 -->
-    
     </div>
 </body>
 

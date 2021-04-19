@@ -2,7 +2,8 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia"> -->
+    <title>TIMlogin</title>
     <style>
         #login {
             position: absolute;
@@ -103,31 +104,12 @@
         }
 
         #qqicon {
-            height: 5em;
             width: 50%;
             float: left;
             text-align: center;
             color: #1E90FF
         }
-        /* 鼠标悬浮特效 */
-        /* #qqicon:hover{
-            color: #1E90FF
-        }
-        #qqicon:hover #darkQQ{
-            display: none
-        }
-        #qqicon:hover #lightQQ{
-            display: inline
-        }
-        #wechaticon:hover{
-            color:#00CD00;
-        }
-        #wechaticon:hover #darkWechat{
-            display: none
-        }
-        #wechaticon:hover #lightWechat{
-            display: inline
-        } */
+
         .disappear {
             display: none;
         }
@@ -337,6 +319,7 @@
                     <div class="half-box">
                         <div class="bottom-font">
                             <input class="float-left check-box" type="checkbox" />
+                           
                             <span>记住密码</span>
                         </div>
                         <div class="bottom-font">
@@ -372,16 +355,22 @@
     let wechatlight = false
     let qqicon = document.getElementById("qqicon")
     let wechaticon = document.getElementById("wechaticon")
+    let darkQQ=document.getElementById("darkQQ")
+    let lightQQ=document.getElementById("lightQQ")
+    let darkWechat=document.getElementById("darkWechat")
+    let lightWechat=document.getElementById("lightWechat")
+    let wechatlogin=document.getElementById("wechat-login")
+    let qqlogin=document.getElementById("qq-login")
     function mouseoverQQ(x) {
         x.style.color = "#1E90FF"
-        document.getElementById("darkQQ").style.display = "none"
-        document.getElementById("lightQQ").style.display = "inline"
+        darkQQ.style.display = "none"
+        lightQQ.style.display = "inline"
         ifdarkWQQ()
     }
     function mouseoverWechat(x) {
         x.style.color = "#00CD00"
-        document.getElementById("lightWechat").style.display = "inline"
-        document.getElementById("darkWechat").style.display = "none"
+        lightWechat.style.display = "inline"
+        darkWechat.style.display = "none"
         ifdarkWechat()
     }
 
@@ -401,41 +390,41 @@
         }
     }
     function mouseleaveWechat() {
-        document.getElementById("wechaticon").style.color = "#999"
-        document.getElementById("lightWechat").style.display = "none"
-        document.getElementById("darkWechat").style.display = "inline"
+        wechaticon.style.color = "#999"
+        lightWechat.style.display = "none"
+        darkWechat.style.display = "inline"
         //console.log("离开微信")
     }
     function clickwechat() {
-        document.getElementById("wechat-login").style.display = "block"
+        wechatlogin.style.display = "block"
         //console.log("点亮为新")
-        document.getElementById("lightQQ").style.display = "none"
-        document.getElementById("darkQQ").style.display = "inline"
-        document.getElementById("lightWechat").style.display = "inline"
-        document.getElementById("darkWechat").style.display = "none"
-        document.getElementById("wechaticon").style.color = "#00CD00"
-        document.getElementById("qqicon").style.color = "#999"
+        lightQQ.style.display = "none"
+        darkQQ.style.display = "inline"
+        lightWechat.style.display = "inline"
+        darkWechat.style.display = "none"
+        wechaticon.style.color = "#00CD00"
+        qqicon.style.color = "#999"
         wechatlight = true
         qqlight = false
-        document.getElementById("qq-login").style.display = "none"
+        qqlogin.style.display = "none"
     }
     function mouseleaveQQ() {
         qqicon.style.color = "#999"
-        document.getElementById("darkQQ").style.display = "inline"
-        document.getElementById("lightQQ").style.display = "none"
+        darkQQ.style.display = "inline"
+        lightQQ.style.display = "none"
     }
     function clickqq() {
         //console.log("点亮qq")
-        document.getElementById("darkQQ").style.display = "none"
-        document.getElementById("lightQQ").style.display = "inline"
-        document.getElementById("darkWechat").style.display = "inline"
-        document.getElementById("lightWechat").style.display = "none"
-        document.getElementById("qqicon").style.color = "#1E90FF"
-        document.getElementById("wechaticon").style.color = "#999"
+        darkQQ.style.display = "none"
+        lightQQ.style.display = "inline"
+        darkWechat.style.display = "inline"
+        lightWechat.style.display = "none"
+        qqicon.style.color = "#1E90FF"
+        wechaticon.style.color = "#999"
         wechatlight = false
         qqlight = true
-        document.getElementById("wechat-login").style.display = "none"
-        document.getElementById("qq-login").style.display = "block"
+        wechatlogin.style.display = "none"
+        qqlogin.style.display = "block"
     }
 </script>
 

@@ -91,6 +91,7 @@
         .icon1 {
             float: right;
             margin-top: 0.5em;
+            margin-right: 0.4em;
         }
 
         /* 和下面的marge值怎么算 */
@@ -98,7 +99,7 @@
             position: relative;
             height: 5em;
             margin: 3em auto 4em;
-            width: 70%;
+            width: 55%;
         }
 
         #qqicon {
@@ -108,13 +109,31 @@
             text-align: center;
             color: #1E90FF
         }
-        #qqicon:hover{
-            
+        /* 鼠标悬浮特效 */
+        /* #qqicon:hover{
+            color: #1E90FF
         }
+        #qqicon:hover #darkQQ{
+            display: none
+        }
+        #qqicon:hover #lightQQ{
+            display: inline
+        }
+        #wechaticon:hover{
+            color:#00CD00;
+        }
+        #wechaticon:hover #darkWechat{
+            display: none
+        }
+        #wechaticon:hover #lightWechat{
+            display: inline
+        } */
         .disappear {
             display: none;
         }
-
+        .words{
+            margin: 0
+        }
 
         #wechaticon {
             height: 5em;
@@ -123,29 +142,25 @@
             text-align: center;
             color: #999;
         }
-
-        /* 鼠标悬浮特效 */
-        /* #qq-wechat:hover #darkWechat{
+      .disappear {
             display: none;
         }
-        #qq-wechat:hover #lightWechat{
-            display: inline;
+        .words{
+            margin: 0
         }
-        #qq-wechat:hover #wechat-word{
-            color:#00CD00;
-        } */
-        /* .qqhover:hover{
-           color: rgb(164, 164, 172);
-        } */
 
+    
         .account-box {
             position: relative;
             display: block;
             height: 3em;
             width: 15em;
-
         }
-
+        #qrbox{
+            position: relative;
+            width:inherit;
+            height: 10em;
+        }
         #RQcode:hover .icon {
             display: none;
         }
@@ -160,7 +175,7 @@
         }
 
         .big-marge {
-            margin: 4em auto 1.5em;
+            margin: 4em auto 0.5em;
         }
 
         .small-marge {
@@ -219,6 +234,12 @@
             width: 1em;
             /* 改变复选框边框颜色 */
         }
+        #wechat-login{
+            color: #999;
+            text-align: center;
+            width: inherit;
+            height:30em;
+        }
     </style>
 </head>
 
@@ -236,7 +257,7 @@
             <!-- 左侧文字 -->
             <div id="left-middle">
                 <p>在线协作</p>
-                <p>.</p>
+                <p>·</p>
                 <p>永久免费</p>
             </div>
         </div>
@@ -246,138 +267,175 @@
             <div id="icons">
                 <!-- 设置 -->
                 <svg viewBox="0 0 1024 1024" class="icon" xmlns="http://www.w3.org/2000/svg" width="40" height="30">
-                    <path d="M704.28672 309.20704l28.95872 28.9792L334.6432 736.78848l-28.95872-28.9792z"
-                        fill="#cdcdcd"></path>
-                    <path d="M341.03296 315.5968l398.60224 398.60224-28.95872 28.95872-398.60224-398.60224z"
-                        fill="#cdcdcd"></path>
+                    <path d="M704.28672 309.20704l28.95872 28.9792L334.6432 736.78848l-28.95872-28.9792z" fill="#cdcdcd"></path>
+                    <path d="M341.03296 315.5968l398.60224 398.60224-28.95872 28.95872-398.60224-398.60224z" fill="#cdcdcd"></path>
                 </svg>
                 <!-- 退出 -->
                 <svg viewBox="0 0 1024 1024" class="icon" xmlns="http://www.w3.org/2000/svg" width="40" height="30">
-                    <path
-                        d="M700.75 857.16h-369.5a12 12 0 0 1-10.39-6l-184.76-320a12 12 0 0 1 0-12l184.76-320a12 12 0 0 1 10.39-6h369.5a12 12 0 0 1 10.39 6l184.76 320a12 12 0 0 1 0 12l-184.76 320a12 12 0 0 1-10.39 6z m-362.57-24h355.64l177.83-308-177.83-308H338.18l-177.83 308z"
+                    <path d="M700.75 857.16h-369.5a12 12 0 0 1-10.39-6l-184.76-320a12 12 0 0 1 0-12l184.76-320a12 12 0 0 1 10.39-6h369.5a12 12 0 0 1 10.39 6l184.76 320a12 12 0 0 1 0 12l-184.76 320a12 12 0 0 1-10.39 6z m-362.57-24h355.64l177.83-308-177.83-308H338.18l-177.83 308z"
                         fill="#cdcdcd"></path>
-                    <path
-                        d="M516 667.16c-78.3 0-142-63.7-142-142s63.7-142 142-142 142 63.7 142 142-63.7 142-142 142z m0-260a118 118 0 1 0 118 118 118.13 118.13 0 0 0-118-118z"
+                    <path d="M516 667.16c-78.3 0-142-63.7-142-142s63.7-142 142-142 142 63.7 142 142-63.7 142-142 142z m0-260a118 118 0 1 0 118 118 118.13 118.13 0 0 0-118-118z"
                         fill="#cdcdcd"></path>
                 </svg>
             </div>
             <!-- qq微信图标行 -->
             <div id="qq-wechat">
-                <!-- <div id="qq-wechat-icon">
-                    <img class="qq" id="lightQQ" src="image/lightQQ.png" />
-                    <img class="qq disappear qqhover" id="darkQQ" src="image/darkQQ.png" />
-                    <img class="wechat wechathover" id="darkWechat" src="image/darkWechat.png" />
-                    <img class="wechat disappear" id="lightWechat" src="image/lightWechat.png" />
-                </div>
-                <span id="qq-word" class="qqhover">QQ登录</span>
-                <span id="wechat-word" class="wechathover">微信登录</span> -->
-                <div id="qqicon">
+                <div id="qqicon" onmouseover="mouseoverQQ(this)" onclick="clickqq()">
                     <img class="qq" id="lightQQ" src="image/lightQQ.png" />
                     <img class="qq disappear" id="darkQQ" src="image/darkQQ.png" />
-                    <p id="qq-word">QQ登录</p>
+                    <p id="qq-word" class="words">QQ登录</p>
                 </div>
-                <div id="wechaticon">
+                <div id="wechaticon" onmouseover="mouseoverWechat(this)" onclick="clickwechat()">
                     <img class="wechat" id="darkWechat" src="image/darkWechat.png" />
                     <img class="wechat disappear" id="lightWechat" src="image/lightWechat.png" />
-                    <p id="wechat-word">微信登录</p>
+                    <p id="wechat-word" class="words">微信登录</p>
                 </div>
             </div>
             <!-- qq登录信息 -->
-            <!-- 输入账号 -->
-            <div class="account-box big-marge">
-                <input  placeholder="QQ号码/手机/邮箱" />
-                <svg class="icon1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" p-id="2012" width="20"
-                    height="20">
-                    <path
-                        d="M961.2 296.9c0 4.9-1.9 9.7-5.6 13.4L525.4 740.5c-7.4 7.4-19.4 7.4-26.9 0L68.4 310.3c-7.4-7.4-7.4-19.4 0-26.9 7.4-7.4 19.4-7.4 26.9 0L512 700.2l416.7-416.7c7.4-7.4 19.4-7.4 26.9 0 3.7 3.7 5.6 8.6 5.6 13.4z"
-                        fill="#bfbfbf"></path>
-                </svg>
-                <hr />
-            </div>
-            <!-- 输入密码 -->
-            <div class="account-box small-marge" id="password">
-                <input type="password" placeholder="密码" />
-                <svg t="1618543187197" class="icon" viewBox="0 0 1024 1024" version="1.1"
-                    xmlns="http://www.w3.org/2000/svg" p-id="6211" data-spm-anchor-id="a313x.7781069.0.i2" width="35"
-                    height="35">
-                    <path
-                        d="M678.4 488.96L532.48 343.04c-10.24-10.24-25.6-10.24-35.84 0-10.24 10.24-10.24 25.6 0 35.84L601.6 483.84H332.8c-15.36 0-25.6 10.24-25.6 25.6s10.24 25.6 25.6 25.6h271.36L499.2 640c-10.24 10.24-10.24 25.6 0 35.84 10.24 10.24 25.6 10.24 35.84 0l145.92-145.92c5.12-5.12 7.68-15.36 7.68-23.04-2.56-2.56-2.56-10.24-10.24-17.92zM512 102.4c-225.28 0-409.6 184.32-409.6 409.6S286.72 921.6 512 921.6 921.6 737.28 921.6 512 737.28 102.4 512 102.4z m0 768c-197.12 0-358.4-161.28-358.4-358.4S314.88 153.6 512 153.6 870.4 314.88 870.4 512 709.12 870.4 512 870.4z"
-                        p-id="6212" fill="#bfbfbf"></path>
-                </svg>
-                <svg t="1618557052903" class="icon disappear" viewBox="0 0 1024 1024" version="1.1"
-                    xmlns="http://www.w3.org/2000/svg" p-id="9969" width="35" height="35">
-                    <path
-                        d="M512 128a384 384 0 1 0 0 768A384 384 0 0 0 512 128z m160 386.048a32.128 32.128 0 0 1-9.536 22.592l-128 126.208a32.128 32.128 0 0 1-45.248-0.384 32 32 0 0 1 0.32-45.248L563.776 544H384a32 32 0 0 1 0-64h177.728L489.216 406.464a32 32 0 1 1 45.568-44.928l122.56 124.288A31.36 31.36 0 0 1 672 512l-0.192 0.96c0 0.384 0.192 0.704 0.192 1.088z"
-                        p-id="9970" fill="#bfbfbf"></path>
-                </svg>
-                <hr />
-            </div>
-            <!-- 二维码 -->
-            <div class="account-box small-marge" id="RQcode">
-                <svg t="1618534924371" class="icon" viewBox="0 0 1024 1024" version="1.1"
-                    xmlns="http://www.w3.org/2000/svg" p-id="1834" width="20" height="20">
-                    <path
-                        d="M426.666667 0H42.666667A42.666667 42.666667 0 0 0 0 42.666667V426.666667a42.666667 42.666667 0 0 0 42.666667 42.666666H426.666667a42.666667 42.666667 0 0 0 42.666666-42.666666V42.666667A42.666667 42.666667 0 0 0 426.666667 0z m-42.666667 384H85.333333V85.333333h298.666667v298.666667z m42.666667 170.666667H42.666667A42.666667 42.666667 0 0 0 0 597.333333v384A42.666667 42.666667 0 0 0 42.666667 1024H426.666667a42.666667 42.666667 0 0 0 42.666666-42.666667V597.333333a42.666667 42.666667 0 0 0-42.666666-42.666666zM384 938.666667H85.333333V640h298.666667V938.666667z m597.333333-938.666667H597.333333a42.666667 42.666667 0 0 0-42.666666 42.666667V426.666667a42.666667 42.666667 0 0 0 42.666666 42.666666h384A42.666667 42.666667 0 0 0 1024 426.666667V42.666667A42.666667 42.666667 0 0 0 981.333333 0zM938.666667 384H640V85.333333H938.666667v298.666667zM170.666667 170.666667h128v128H170.666667V170.666667z m0 554.666666h128V853.333333H170.666667v-128z m725.333333-170.666666H1024V682.666667h-128v-128z m0 341.333333h-85.333333V1024H1024v-213.333333h-128v85.333333z m-341.333333 0H682.666667V1024h-128v-128z m170.666666-725.333333H853.333333v128h-128V170.666667z m-170.666666 384H682.666667V682.666667h-128v-128zM682.666667 682.666667h128v213.333333H682.666667V682.666667z"
-                        fill="#000000" p-id="1835"></path>
-                </svg>
-                <svg t="1618534924371" class="icon disappear" viewBox="0 0 1024 1024" version="1.1"
-                    xmlns="http://www.w3.org/2000/svg" p-id="1834" width="20" height="20">
-                    <path
-                        d="M426.666667 0H42.666667A42.666667 42.666667 0 0 0 0 42.666667V426.666667a42.666667 42.666667 0 0 0 42.666667 42.666666H426.666667a42.666667 42.666667 0 0 0 42.666666-42.666666V42.666667A42.666667 42.666667 0 0 0 426.666667 0z m-42.666667 384H85.333333V85.333333h298.666667v298.666667z m42.666667 170.666667H42.666667A42.666667 42.666667 0 0 0 0 597.333333v384A42.666667 42.666667 0 0 0 42.666667 1024H426.666667a42.666667 42.666667 0 0 0 42.666666-42.666667V597.333333a42.666667 42.666667 0 0 0-42.666666-42.666666zM384 938.666667H85.333333V640h298.666667V938.666667z m597.333333-938.666667H597.333333a42.666667 42.666667 0 0 0-42.666666 42.666667V426.666667a42.666667 42.666667 0 0 0 42.666666 42.666666h384A42.666667 42.666667 0 0 0 1024 426.666667V42.666667A42.666667 42.666667 0 0 0 981.333333 0zM938.666667 384H640V85.333333H938.666667v298.666667zM170.666667 170.666667h128v128H170.666667V170.666667z m0 554.666666h128V853.333333H170.666667v-128z m725.333333-170.666666H1024V682.666667h-128v-128z m0 341.333333h-85.333333V1024H1024v-213.333333h-128v85.333333z m-341.333333 0H682.666667V1024h-128v-128z m170.666666-725.333333H853.333333v128h-128V170.666667z m-170.666666 384H682.666667V682.666667h-128v-128zM682.666667 682.666667h128v213.333333H682.666667V682.666667z"
-                        fill="blue" p-id="1835"></path>
-                </svg>
-            </div>
-            <!-- 底部信息 -->
-            <div class="bottom-box big-marge" id="bottom">
-                <!-- 左侧 -->
-                <div class="half-box">
-                    <div class="bottom-font">
-                        <input class="float-left check-box" type="checkbox" />
-                        <span>记住密码</span>
-                    </div>
-                    <div class="bottom-font">
-                        <input class="float-left check-box" type="checkbox" />
-                        <span>自动登录</span>
-                    </div>
+            <div id="qq-login">
+                <!-- 输入账号 -->
+                <div class="account-box big-marge">
+                    <input placeholder="QQ号码/手机/邮箱" />
+                    <svg class="icon1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" p-id="2012" width="16"
+                        height="16">
+                        <path d="M961.2 296.9c0 4.9-1.9 9.7-5.6 13.4L525.4 740.5c-7.4 7.4-19.4 7.4-26.9 0L68.4 310.3c-7.4-7.4-7.4-19.4 0-26.9 7.4-7.4 19.4-7.4 26.9 0L512 700.2l416.7-416.7c7.4-7.4 19.4-7.4 26.9 0 3.7 3.7 5.6 8.6 5.6 13.4z"
+                            fill="#bfbfbf"></path>
+                    </svg>
+                    <hr />
                 </div>
-                <!-- 右侧 -->
-                <div class="half-box">
-                    <div class="bottom-font">
-                        <span class="float-right">找回密码</span>
+                <!-- 输入密码 -->
+                <div class="account-box small-marge" id="password">
+                    <input type="password" placeholder="密码" />
+                    <svg t="1618543187197" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                        p-id="6211" data-spm-anchor-id="a313x.7781069.0.i2" width="38" height="38">
+                        <path d="M678.4 488.96L532.48 343.04c-10.24-10.24-25.6-10.24-35.84 0-10.24 10.24-10.24 25.6 0 35.84L601.6 483.84H332.8c-15.36 0-25.6 10.24-25.6 25.6s10.24 25.6 25.6 25.6h271.36L499.2 640c-10.24 10.24-10.24 25.6 0 35.84 10.24 10.24 25.6 10.24 35.84 0l145.92-145.92c5.12-5.12 7.68-15.36 7.68-23.04-2.56-2.56-2.56-10.24-10.24-17.92zM512 102.4c-225.28 0-409.6 184.32-409.6 409.6S286.72 921.6 512 921.6 921.6 737.28 921.6 512 737.28 102.4 512 102.4z m0 768c-197.12 0-358.4-161.28-358.4-358.4S314.88 153.6 512 153.6 870.4 314.88 870.4 512 709.12 870.4 512 870.4z"
+                            p-id="6212" fill="#bfbfbf"></path>
+                    </svg>
+                    <svg t="1618557052903" class="icon disappear" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                        p-id="9969" width="38" height="38">
+                        <path d="M512 128a384 384 0 1 0 0 768A384 384 0 0 0 512 128z m160 386.048a32.128 32.128 0 0 1-9.536 22.592l-128 126.208a32.128 32.128 0 0 1-45.248-0.384 32 32 0 0 1 0.32-45.248L563.776 544H384a32 32 0 0 1 0-64h177.728L489.216 406.464a32 32 0 1 1 45.568-44.928l122.56 124.288A31.36 31.36 0 0 1 672 512l-0.192 0.96c0 0.384 0.192 0.704 0.192 1.088z"
+                            p-id="9970" fill="#bfbfbf"></path>
+                    </svg>
+                    <hr />
+                </div>
+                <!-- 二维码 -->
+                <div class="account-box small-marge" id="RQcode">
+                    <svg t="1618534924371" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                        p-id="1834" width="20" height="20">
+                        <path d="M426.666667 0H42.666667A42.666667 42.666667 0 0 0 0 42.666667V426.666667a42.666667 42.666667 0 0 0 42.666667 42.666666H426.666667a42.666667 42.666667 0 0 0 42.666666-42.666666V42.666667A42.666667 42.666667 0 0 0 426.666667 0z m-42.666667 384H85.333333V85.333333h298.666667v298.666667z m42.666667 170.666667H42.666667A42.666667 42.666667 0 0 0 0 597.333333v384A42.666667 42.666667 0 0 0 42.666667 1024H426.666667a42.666667 42.666667 0 0 0 42.666666-42.666667V597.333333a42.666667 42.666667 0 0 0-42.666666-42.666666zM384 938.666667H85.333333V640h298.666667V938.666667z m597.333333-938.666667H597.333333a42.666667 42.666667 0 0 0-42.666666 42.666667V426.666667a42.666667 42.666667 0 0 0 42.666666 42.666666h384A42.666667 42.666667 0 0 0 1024 426.666667V42.666667A42.666667 42.666667 0 0 0 981.333333 0zM938.666667 384H640V85.333333H938.666667v298.666667zM170.666667 170.666667h128v128H170.666667V170.666667z m0 554.666666h128V853.333333H170.666667v-128z m725.333333-170.666666H1024V682.666667h-128v-128z m0 341.333333h-85.333333V1024H1024v-213.333333h-128v85.333333z m-341.333333 0H682.666667V1024h-128v-128z m170.666666-725.333333H853.333333v128h-128V170.666667z m-170.666666 384H682.666667V682.666667h-128v-128zM682.666667 682.666667h128v213.333333H682.666667V682.666667z"
+                            fill="#000000" p-id="1835"></path>
+                    </svg>
+                    <svg t="1618534924371" class="icon disappear" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                        p-id="1834" width="20" height="20">
+                        <path d="M426.666667 0H42.666667A42.666667 42.666667 0 0 0 0 42.666667V426.666667a42.666667 42.666667 0 0 0 42.666667 42.666666H426.666667a42.666667 42.666667 0 0 0 42.666666-42.666666V42.666667A42.666667 42.666667 0 0 0 426.666667 0z m-42.666667 384H85.333333V85.333333h298.666667v298.666667z m42.666667 170.666667H42.666667A42.666667 42.666667 0 0 0 0 597.333333v384A42.666667 42.666667 0 0 0 42.666667 1024H426.666667a42.666667 42.666667 0 0 0 42.666666-42.666667V597.333333a42.666667 42.666667 0 0 0-42.666666-42.666666zM384 938.666667H85.333333V640h298.666667V938.666667z m597.333333-938.666667H597.333333a42.666667 42.666667 0 0 0-42.666666 42.666667V426.666667a42.666667 42.666667 0 0 0 42.666666 42.666666h384A42.666667 42.666667 0 0 0 1024 426.666667V42.666667A42.666667 42.666667 0 0 0 981.333333 0zM938.666667 384H640V85.333333H938.666667v298.666667zM170.666667 170.666667h128v128H170.666667V170.666667z m0 554.666666h128V853.333333H170.666667v-128z m725.333333-170.666666H1024V682.666667h-128v-128z m0 341.333333h-85.333333V1024H1024v-213.333333h-128v85.333333z m-341.333333 0H682.666667V1024h-128v-128z m170.666666-725.333333H853.333333v128h-128V170.666667z m-170.666666 384H682.666667V682.666667h-128v-128zM682.666667 682.666667h128v213.333333H682.666667V682.666667z"
+                            fill="blue" p-id="1835"></path>
+                    </svg>
+                </div>
+                <!-- 底部信息 -->
+                <div class="bottom-box big-marge" id="bottom">
+                    <!-- 左侧 -->
+                    <div class="half-box">
+                        <div class="bottom-font">
+                            <input class="float-left check-box" type="checkbox" />
+                            <span>记住密码</span>
+                        </div>
+                        <div class="bottom-font">
+                            <input class="float-left check-box" type="checkbox" />
+                            <span>自动登录</span>
+                        </div>
                     </div>
-                    <div class="bottom-font">
-                        <span class="float-right">注册账号</span>
+                    <!-- 右侧 -->
+                    <div class="half-box">
+                        <div class="bottom-font">
+                            <span class="float-right">找回密码</span>
+                        </div>
+                        <div class="bottom-font">
+                            <span class="float-right">注册账号</span>
+                        </div>
                     </div>
                 </div>
             </div>
             <!-- 微信登录信息 -->
             <div class="disappear" id="wechat-login">
-                <p>吹泡泡不哦哦饿哦</p>
+                <div id="qrbox">
+                    <img src="image/qrcode.png" />
+                </div>
+                <p class="words">请使用微信扫描二维码登录</p>
+                <P class="words">"TIM"</P>
             </div>
         </div>
     </div>
 </body>
 
 <script>
-    let left = document.getElementById("lightQQ")
-    let right = document.getElementById("lightWechat")
-    right.onclick = function () {
+    let qqlight = true
+    let wechatlight = false
+    let qqicon = document.getElementById("qqicon")
+    let wechaticon = document.getElementById("wechaticon")
+    function mouseoverQQ(x) {
+        x.style.color = "#1E90FF"
+        document.getElementById("darkQQ").style.display = "none"
+        document.getElementById("lightQQ").style.display = "inline"
+        ifdarkWQQ()
+    }
+    function mouseoverWechat(x) {
+        x.style.color = "#00CD00"
+        document.getElementById("lightWechat").style.display = "inline"
+        document.getElementById("darkWechat").style.display = "none"
+        ifdarkWechat()
+    }
+
+    //判断鼠标移开时图标是否变暗
+    function ifdarkWechat() {
+        //console.log("qqlight" + qqlight)
+        wechaticon.onmouseleave = ""
+        if (qqlight == true) {
+            wechaticon.onmouseleave = mouseleaveWechat
+        }
+    }
+    function ifdarkWQQ() {
+        //console.log("wechatlight" + wechatlight)
+        qqicon.onmouseleave = ""
+        if (wechatlight) {
+            qqicon.onmouseleave = mouseleaveQQ
+        }
+    }
+    function mouseleaveWechat() {
+        document.getElementById("wechaticon").style.color = "#999"
+        document.getElementById("lightWechat").style.display = "none"
+        document.getElementById("darkWechat").style.display = "inline"
+        //console.log("离开微信")
+    }
+    function clickwechat() {
         document.getElementById("wechat-login").style.display = "block"
-        console.log("点亮为新")
+        //console.log("点亮为新")
         document.getElementById("lightQQ").style.display = "none"
         document.getElementById("darkQQ").style.display = "inline"
-        document.getElementById("lingtWechat").style.display = "inline"
+        document.getElementById("lightWechat").style.display = "inline"
         document.getElementById("darkWechat").style.display = "none"
+        document.getElementById("wechaticon").style.color = "#00CD00"
+        document.getElementById("qqicon").style.color = "#999"
+        wechatlight = true
+        qqlight = false
+        document.getElementById("qq-login").style.display = "none"
     }
-    // function qqInfo() {
-    //     document.getElementById("wechat-login").style.display = "none"
-    //     console.log("点亮qq")
-    // }
-    // left.onclick = qqInfo()
-
-    left.onclick = function () {
+    function mouseleaveQQ() {
+        qqicon.style.color = "#999"
+        document.getElementById("darkQQ").style.display = "inline"
+        document.getElementById("lightQQ").style.display = "none"
+    }
+    function clickqq() {
+        //console.log("点亮qq")
+        document.getElementById("darkQQ").style.display = "none"
+        document.getElementById("lightQQ").style.display = "inline"
+        document.getElementById("darkWechat").style.display = "inline"
+        document.getElementById("lightWechat").style.display = "none"
+        document.getElementById("qqicon").style.color = "#1E90FF"
+        document.getElementById("wechaticon").style.color = "#999"
+        wechatlight = false
+        qqlight = true
         document.getElementById("wechat-login").style.display = "none"
-        console.log("点亮qq")
+        document.getElementById("qq-login").style.display = "block"
     }
 </script>
 

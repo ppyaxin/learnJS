@@ -1,0 +1,231 @@
+<html>
+    <head>
+		<meta charset="utf-8">
+		<title>slideshow</title>
+		<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script><script src="https://s1.pstatp.com/cdn/expire-1-M/jquery/1.10.2/jquery.min.js"></script>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			.swiper-contione {
+				width: 600px;
+				height: 400px;
+				/* overflow: hidden; */
+				margin: 20px auto;
+				position: relative;
+			}
+
+			.swiper {
+				width: 9999999px;
+				height: 400px;
+				/* transition： CSS属性，花费时间，效果曲线(默认ease)，延迟时间(默认0) */
+				transition: all 1s ease;
+			}
+
+			.swiper-item {
+				width: 600px;
+				height: 400px;
+				float: left;
+				position: relative;
+			}
+
+			.swiper-item img {
+				width: 600px;
+				height: 400px;
+			}
+
+			.swiper-item p {
+				width: 100%;
+				height: 50px;
+				position: absolute;
+				top: 0;
+				left: 0;
+				background: rgba(0, 0, 0, 0.5);
+				color: #fff;
+				text-align: center;
+				line-height: 50px;
+				cursor: pointer;
+			}
+
+			.swiper-point {
+				width: 100%;
+				height: 40px;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				cursor: pointer;
+			}
+
+			.point {
+				width: 12px;
+				height: 12px;
+				border-radius: 50%;
+				background: rgba(0, 0, 0, 0.9);
+				margin-right: 5px;
+				float: left;
+			}
+
+			.point.active {
+				background: #fff;
+			}
+
+			.swiper-left {
+				width: 60px;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				left: -60px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				transition: all 0.4s ease;
+			}
+
+			.swiper-right {
+				width: 60px;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				right: -60px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				transition: all 0.4s ease;
+			}
+
+			.swiper-left img,
+			.swiper-right img {
+				cursor: pointer;
+			}
+
+			.swiper-contione:hover .swiper-left {
+				left: 0;
+			}
+
+			.swiper-contione:hover .swiper-right {
+				right: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="swiper-contione">
+			<div class="swiper" style="transform: translateX(-1800px);">
+				<div class="swiper-item">
+					<img src="./img/t1.png">
+					<p>这是第一</p>
+				</div>
+				<div class="swiper-item">
+					<img src="img/t2.png">
+					<p>这是第二</p>
+				</div>
+				<div class="swiper-item">
+					<img src="img/t3.png">
+					<p>这是第三</p>
+				</div>
+				<div class="swiper-item">
+					<img src="img/t4.png">
+					<p>这是第四</p>
+				</div>
+			</div>
+			<div class="swiper-point">
+				<div class="swiper-point-item">
+					<div class="point"></div>
+					<div class="point"></div>
+					<div class="point"></div>
+					<div class="point active"></div>
+				</div>
+			</div>
+			<div class="swiper-left">
+				<img src="./img/left.png">
+			</div>
+			<div class="swiper-right">
+				<img src="img/right.png">
+			</div>
+		</div>
+	
+	<script type="text/javascript">
+		class Swiper {
+			constructor() {
+				this.w = $('.swiper-item').width();
+				this.num = 0;
+				this.len = $('.swiper-item').length - 1;
+				this.timer = null;
+			}
+			init() {
+				//设置定时器
+				this.setTime();
+				//滑上停止定时器
+				this.hover();
+				//点击指示
+				this.pointClick();
+				//点击左右箭头
+				this.lrClick();
+			}
+			setTime() {
+				// setInterval() ：按照指定的周期（以毫秒计）来调用函数或计算表达式。方法会不停地调用函数，直到 clearInterval() 被调用或窗口被关闭。
+				// setInterval(code,millisec,lang)
+				this.timer = setInterval(() => {
+					this.num++;	
+					if (this.num > this.len) {
+						this.num = 0;
+					}
+					let cssTrx = -this.num * this.w;//图片横着排了一行
+					$('.swiper-point-item .point').eq(this.num).addClass('active').siblings().removeClass('active');
+					$('.swiper').css({transform: `translateX(${cssTrx}px)`})
+				}, 3000)
+			}
+			hover() {
+				$('.swiper-contione').hover(() => {
+					clearInterval(this.timer)
+				}, () => {
+					this.setTime();
+				});
+			}
+			pointClick() {
+				let that = this;
+				$('.swiper-point-item .point').click(function() {
+					that.num = $(this).index();
+					let cssTrx = -that.num * that.w;
+					$(this).addClass('active').siblings().removeClass('active');
+					$('.swiper').css({
+						transform: `translateX(${cssTrx}px)`
+					})
+				})
+			}
+			lrClick() {
+				$('.swiper-left img').click(() => {
+					this.num--;
+					if (this.num < 0) {
+						this.num = this.len;
+					};
+					console.log(this.num)
+					let cssTrx = -this.num * this.w;
+					$('.swiper-point-item .point').eq(this.num).addClass('active').siblings().removeClass('active');
+					$('.swiper').css({
+						transform: `translateX(${cssTrx}px)`
+					})
+				});
+				
+				$('.swiper-right img').click(() => {
+					this.num++;
+					if (this.num > this.len) {
+						this.num = 0;
+					}
+					let cssTrx = -this.num * this.w;
+					$('.swiper-point-item .point').eq(this.num).addClass('active').siblings().removeClass('active');
+					$('.swiper').css({
+						transform: `translateX(${cssTrx}px)`
+					})
+				})
+			}
+		}
+		let sw = new Swiper();
+		sw.init();
+	</script>
+
+</body></html>

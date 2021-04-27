@@ -21,5 +21,39 @@ console.log(person1.constructor==Person)
 console.log(person1 instanceof Object)
 
 //任何函数,用new调用,可以作为构造函数,不通过new调用为普通函数
-Person("iroui",21,"hgiutp")
-window.sayName()
+// Person("iroui",21,"hgiutp")
+// window.sayName()
+
+function foo(a,b){
+    return a*b
+}
+console.log(foo.constructor)
+console.log(foo.prototype)
+
+function Gadget(name,color){
+    this.name=name
+    this.color=color
+    this.WhatAreyou=function(){
+        return 'I am a'+this.color+''+this.name;
+    }
+}
+Gadget.prototype.price=100
+var newtoy =new Gadget('fgoud','BLACKA')
+console.log(newtoy.__proto__)
+
+function extend(Child,Parent){
+    var F =function(){}
+    F.prototype=Parent.prototype
+    Child.prototype=new F()
+    Child.prototype.constructor=Child
+    Child.uber=Parent.prototype
+}
+function extend2(Child,Parent){
+    var p=Parent.prototype
+    var c=Child.prototype
+    for(var i in p){
+        c[i]=p[i]
+    }
+    c.uber=p
+}
+function extend2()

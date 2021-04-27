@@ -23,4 +23,3 @@ console.log(person1 instanceof Object)
 //任何函数,用new调用,可以作为构造函数,不通过new调用为普通函数
 Person("iroui",21,"hgiutp")
 window.sayName()
-

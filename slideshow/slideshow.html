@@ -11,8 +11,8 @@
             margin: -200px auto;
             top: 50%;
             position: relative;
-            border: 1px solid red;
-            /* overflow: hidden; */
+            /* border: 1px solid red; */
+            overflow: hidden;
         }
 
         .items {
@@ -21,6 +21,17 @@
             /* 过渡transition： CSS属性，花费时间，效果曲线(默认ease)，延迟时间(默认0) */
             transition: all 1s ease;
             display: flex;
+            position: relative;
+        }
+        p {
+            width: 600px;
+            height: 50px;
+            position: absolute;
+            background:rgba(88,87,86,0.5);
+            color: #fff;
+            text-align: center;
+            line-height: 50px;
+            margin: 0
         }
 
         .points {
@@ -29,7 +40,7 @@
             z-index: 999;
             bottom: 0;
             width: 100%;
-            justify-content:center;
+            justify-content: center;
         }
 
         .point {
@@ -43,76 +54,151 @@
         .light {
             background: #fff
         }
+
+        .arrow {
+            width: 60px;
+            position: absolute;
+            z-index: 999;
+            top: 50%;
+            /* 向上移动自身50% */
+            transform: translate(0, -50%);
+            transition: all 0.4s ease;
+        }
+
+        .left {
+            left: -60px;
+        }
+
+        .right {
+            float: right;
+            right: -60px;
+        }
+
+        #box:hover .left {
+            left: 0;
+        }
+
+        #box:hover .right {
+            right: 0;
+        }
     </style>
 </head>
 
 <body onload="init()">
     <div id="box">
         <!-- 为啥反着放不行 -->
+        <div class="arrow left">
+            <img src="./img/left.png">
+        </div>
+        <div class="arrow right">
+            <img src="img/right.png">
+        </div>
         <!-- 设置底部小圆点 -->
         <div class="points">
-            <div class="point light"></div>
-            <div class="point"></div>
-            <div class="point"></div>
-            <div class="point"></div>
         </div>
         <!-- 设置图片为紧挨的一行 -->
         <div class="items">
-            <div class="item">
-                <img src="./img/t1.png">
-                <p>这是第一</p>
-            </div>
-            <div class="item">
-                <img src="img/t2.png">
-                <p>这是第二</p>
-            </div>
-            <div class="item">
-                <img src="img/t3.png">
-                <p>这是第三</p>
-            </div>
-            <div class="item">
-                <img src="img/t4.png">
-                <p>这是第四</p>
-            </div>
         </div>
-
     </div>
 
 </body>
 <script>
-    var div1='<div class="item">'+
-                '<img src="./img/t1.png">'+
-                '<p>这是第一</p>'+
-            '</div>'
-    // append
+    //html添加图片和点
+    var addItem = function (n) {
+        for (let i = 1; i <= n; i++) {
+            var div1 =
+            `<div class="item">
+                <p>这是第${i}</p>
+                <img src="./img/t${i}.png">
+                 </div>
+            ` 
+            // '<div class="item">' +
+            //      '<p>这是第' + i + '</p>' +
+            //     '<img src="./img/t' + i + '.png">' +             
+            //     '</div>'
+            $('.items').append(div1)
+        }
+        $('.points').append('<div class="point light">', '</div>')
+        for (let i = 2; i <= n; i++) {
+            var div2 = '<div class="point">' + '</div>'
+            $('.points').append(div2)
+        }
+    }
+    addItem(4)
+    //操作动画
     let itemIndex = 0
     let itemNumber = $('.item').length//获取使用这个类的元素个数
     // console.log("itemnumber" + itemNumber)
     let width = $('#box').width()
+    var timer
     // console.log(width)
+    //定时移动
     function init() {
         //设置定时器
-        //为什么匿名函数可以，拿出来就错了呢
-        var timer = this.setInterval(function changeItem() {
-            itemIndex++
-            let temp = itemIndex % itemNumber
-            let translateX
-            if (temp == 0) {
-                translateX = 0
-            } else {
-                translateX = 0 - width * temp
-            }
-
-            $('.items').css({
-                /* 转变 左右位移 负数向左 正数向右 */
-                transform: `translateX(${translateX}px)`
-            })
-            console.log(translateX)
-        }, 2000)
-
+        timer = setInterval(changeItem, 2000)
+        function changeItem() {
+            itemIndex = (itemIndex + 1) % itemNumber
+            var point = $('.point').eq(itemIndex)
+            changePicture(point, itemIndex)
+        }
+    }
+    //取消定时器
+    function deletehover() {
+        clearInterval(timer)
     }
 
+    //鼠标悬停在图片上
+    $('#box').hover(deletehover, init)
 
+    // 点击下标点事件
+    $('.point').click(function () {
+        itemIndex = $(this).index()
+        var point = $(this)
+        changePicture(point, itemIndex)
+    })
+
+    //点击左右移动标签
+    $('.arrow').click(function () {
+        let direction = $(this).index()
+        if (direction == 0) {
+            if (itemIndex == 0) {
+                itemIndex = itemNumber - 1
+                console.log(itemIndex)
+            } else {
+                itemIndex = (itemIndex - 1) % itemNumber
+            }
+        } else {
+            itemIndex = (itemIndex + 1) % itemNumber
+        }
+        var point = $('.point').eq(itemIndex)
+        changePicture(point, itemIndex)
+    })
+    //改变图片和下标点
+    function changePicture(point, index) {
+        let translateX
+        if (itemIndex == 0) {
+            translateX = 0
+        } else {
+            translateX = 0 - width * itemIndex
+        }
+        point.addClass('light')
+        point.siblings().removeClass('light')
+        $('.items').css({
+            /* 转变 左右位移 负数向左 正数向右 */
+            transform: `translateX(${translateX}px)`
+        })
+    }
+
+    function fn(i){
+        return function(n){
+            console.log(n+ (i++))
+        }
+    }
+   var f = fn(10)
+   f(20)//
+   fn(30)(40)
+   fn(40)(50)
+   f(30)
 </script>
 
 </html>

@@ -225,12 +225,12 @@
             </div>
         </div>
         <!-- 音频圈圈 -->
-        <div class="circleProgress_wrapper" v-bind:class="isPause ? 'pause' : '' " @click="click1">
+        <div class="circleProgress_wrapper">
 
-            <div class="wrapper right">
+            <div class="wrapper right" v-bind:class="isPause ? 'pause' : '' "  @click="click1">
                 <div class="circleProgress rightcircle"></div>
             </div>
-            <div class="wrapper left">
+            <div class="wrapper left" v-bind:class="isPause ? 'pause' : '' "  @click="click1">
                 <div class="circleProgress leftcircle"></div>
             </div>
             <div class="icon start">
@@ -252,6 +252,7 @@
         methods: {
             click1: function () {
                 isPause = true
+                console.log("就是玩")
             }
         },
     });

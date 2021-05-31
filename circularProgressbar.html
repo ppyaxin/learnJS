@@ -126,17 +126,32 @@
             margin: -12.5px 0 0 -12.5px;
         }
 
-        .disappear {
-            display: none;
+        .bounce-enter-active {
+            animation: bounce-in .5s;
+        }
+
+        .bounce-leave-active {
+            animation: bounce-in .5s reverse;
+        }
+
+        @keyframes bounce-in {
+            0% {
+                transform: scale(0);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
 
         /* 时间条用的css */
-        #time-box {
+        .time-box {
             position: relative;
             height: 40px;
             width: 100%;
             display: flex;
             justify-content: center;
+            text-align: center;
         }
 
         .box {
@@ -156,22 +171,22 @@
             /* border-radius: 5px 5px 0 0; */
         }
 
-        .box div:nth-child(1) {
+        .child1 {
             left: 0px;
             animation: musicWave 1s infinite linear both alternate;
         }
 
-        .box div:nth-child(2) {
+        .child2 {
             left: 10px;
             animation: musicWave 0.8s infinite linear both alternate;
         }
 
-        .box div:nth-child(3) {
+        .child3 {
             left: 20px;
             animation: musicWave 0.6s infinite linear both alternate;
         }
 
-        .box div:nth-child(4) {
+        .child4 {
             left: 30px;
             animation: musicWave 0.3s infinite linear both alternate;
         }
@@ -206,6 +221,8 @@
         .pause {
             animation-play-state: paused;
         }
+
+        /* 提示条样式 */
     </style>
 </head>
 
@@ -213,12 +230,12 @@
 
     <div id="recording">
         <!-- 播放时间 -->
-        <div id="time-box">
+        <div class="time-box">
             <div class="box">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+                <div class="child1" :class="{pause:isPause}"></div>
+                <div class="child2" :class="{pause:isPause}"></div>
+                <div class="child3" :class="{pause:isPause}"></div>
+                <div class="child4" :class="{pause:isPause}"></div>
             </div>
             <!-- <div class="time">
                 <div class="time-text">
@@ -226,27 +243,32 @@
                 </div>
             </div> -->
             <div class="box">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+                <div class="child1" :class="{pause:isPause}"></div>
+                <div class="child2" :class="{pause:isPause}"></div>
+                <div class="child3" :class="{pause:isPause}"></div>
+                <div class="child4" :class="{pause:isPause}"></div>
             </div>
         </div>
         <!-- 音频圈圈 -->
         <div class="circleProgress_wrapper" @click="click1">
-
             <div class="wrapper right">
                 <div class="circleProgress rightcircle" :class="{pause:isPause}"></div>
             </div>
             <div class="wrapper left">
                 <div class="circleProgress leftcircle" :class="{pause:isPause}"></div>
             </div>
-            <div class="icon start" :class="{disappear:!disappear}">
-
-            </div>
-            <div class="icon end" :class="{disappear:disappear}">
-
-            </div>
+            <transition name="bounce">
+                <div class="icon start" v-show="disappear">
+                </div>
+            </transition>
+            <transition name="bounce">
+                <div class="icon end" v-show="!disappear">
+                </div>
+            </transition>
+        </div>
+        <!-- 提示语 -->
+        <div class="time-box">
+           {{leftTime}}
         </div>
     </div>
 </body>
@@ -257,15 +279,23 @@
         data: {
             isPause: false,
             disappear: true,
+            timer: '',
+            leftTime: 10
         },
         methods: {
             click1: function () {
                 this.isPause = !this.isPause
                 this.disappear = !this.disappear
-                console.log("xxxxxxxx")
+            },
+            count: function () {
+                    this.timer = setInterval(this.leftTime--, 1000)
+                    console.log("hhioegg")
             }
         },
-    });
+        computed:{
+           
+        }
+    })
 </script>
 
 </html>

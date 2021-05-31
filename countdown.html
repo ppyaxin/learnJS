@@ -1,0 +1,27 @@
+<template>
+    <section>
+      <h1>hello world~</h1>
+    </section>
+  </template>
+  <script>
+    export default {
+      data() {
+        return {
+          timer: '',
+          value: 0
+        };
+      },
+      methods: {
+        get() {
+          this.value ++;
+          console.log(this.value);
+        }
+      },
+      mounted() {
+        this.timer = setInterval(this.get, 1000);
+      },
+      beforeDestroy() {
+        clearInterval(this.timer);
+      }
+    };
+  </script>

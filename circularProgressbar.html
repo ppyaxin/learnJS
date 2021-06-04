@@ -58,17 +58,17 @@
             transform: rotate(45deg);
         }
 
+        .pause {
+            animation-play-state: paused;
+        }
+
         .rightcircle {
             border-top: 2px solid #D1D1D1;
             border-right: 2px solid #D1D1D1;
             box-shadow: 0 0 5px 0.5px #D1D1D1;
             right: 0;
-            animation: circleProgressLoad_right 20s linear 1 forwards;
+            animation: circleProgressLoad_right linear 1 backwards;
 
-        }
-
-        .pause {
-            animation-play-state: paused;
         }
 
         .leftcircle {
@@ -76,10 +76,52 @@
             border-left: 2px solid #D1D1D1;
             box-shadow: 0 0 5px 0.5px #D1D1D1;
             left: 0;
-            animation: circleProgressLoad_left 20s linear 1 forwards;
+            animation: circleProgressLoad_left linear 1 backwards;
         }
 
+        .rightcircle1 {
+            border-top: 2px solid #D1D1D1;
+            border-right: 2px solid #D1D1D1;
+            box-shadow: 0 0 5px 0.5px #D1D1D1;
+            right: 0;
+            animation: circleProgressLoad_right1 linear 1 backwards;
+
+        }
+
+
+
+        .leftcircle1 {
+            border-bottom: 2px solid #D1D1D1;
+            border-left: 2px solid #D1D1D1;
+            box-shadow: 0 0 5px 0.5px #D1D1D1;
+            left: 0;
+            animation: circleProgressLoad_left1  linear 1 backwards;
+        }
+
+
         @keyframes circleProgressLoad_right {
+            0% {
+                -webkit-transform: rotate(45deg);
+            }
+            50%,
+            100% {
+                -webkit-transform: rotate(225deg);
+            }
+        }
+
+        @keyframes circleProgressLoad_left {
+
+            0%,
+            50% {
+                -webkit-transform: rotate(45deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(225deg);
+            }
+        }
+
+        @keyframes circleProgressLoad_right1 {
             0% {
                 -webkit-transform: rotate(45deg);
             }
@@ -90,7 +132,7 @@
             }
         }
 
-        @keyframes circleProgressLoad_left {
+        @keyframes circleProgressLoad_left1 {
 
             0%,
             50% {
@@ -222,6 +264,11 @@
             animation-play-state: paused;
         }
 
+        /* 反向播放 */
+        .reverse {
+            animation-direction: reverse;
+        }
+
         /* 提示条样式 */
     </style>
 </head>
@@ -237,11 +284,11 @@
                 <div class="child3" :class="{pause:isPause}"></div>
                 <div class="child4" :class="{pause:isPause}"></div>
             </div>
-            <!-- <div class="time">
+            <div class="time">
                 <div class="time-text">
-                    00:00
+                    {{useTime}}
                 </div>
-            </div> -->
+            </div>
             <div class="box">
                 <div class="child1" :class="{pause:isPause}"></div>
                 <div class="child2" :class="{pause:isPause}"></div>
@@ -252,10 +299,10 @@
         <!-- 音频圈圈 -->
         <div class="circleProgress_wrapper" @click="click1">
             <div class="wrapper right">
-                <div class="circleProgress rightcircle" :class="{pause:isPause}"></div>
+                <div class="circleProgress" :style="{'animation-duration':voicetimer+'s'}" :class="{pause:isPause,rightcircle:restart,rightcircle1:!restart}"></div>
             </div>
             <div class="wrapper left">
-                <div class="circleProgress leftcircle" :class="{pause:isPause}"></div>
+                <div class="circleProgress" :style="{'animation-duration':voicetimer+'s'}" :class="{pause:isPause,leftcircle:restart,leftcircle1:!restart}"></div>
             </div>
             <transition name="bounce">
                 <div class="icon start" v-show="disappear">
@@ -268,7 +315,7 @@
         </div>
         <!-- 提示语 -->
         <div class="time-box">
-           {{leftTime}}
+            {{leftTime}}
         </div>
     </div>
 </body>
@@ -280,22 +327,52 @@
             isPause: false,
             disappear: true,
             timer: '',
-            leftTime: 10
+            leftTime: 10,
+            useTime: 0,
+            restart: true,
+            clicktime: 0,
+            voicetimer:20,
+   
+        },
+        computed: {
+
+        },
+        watch: {
+
         },
         methods: {
             click1: function () {
+                clearInterval(this.timer)
                 this.isPause = !this.isPause
                 this.disappear = !this.disappear
+                if (this.clicktime % 2 == 1) {
+                    console.log('HHHHHH')
+                    this.restart = !this.restart
+                   this.voicetimer=this.useTime     
+                }else{
+                    console.log("hhhhhh")
+                }
+                this.clicktime++
+                console.log(this.clicktime)
             },
             count: function () {
-                    this.timer = setInterval(this.leftTime--, 1000)
-                    console.log("hhioegg")
+                this.timer = setInterval(this.getTime, 1000)
+                console.log("hhioegg")
+            },
+            getTime: function () {
+                this.leftTime--
+                this.useTime++
+                let temp = []
+                if (this.useTime < 10) {
+                    this.useTime = '0' + this.useTime
+                }
             }
         },
-        computed:{
-           
+        computed: {
+
         }
     })
+    vm.count()
 </script>
 
 </html>

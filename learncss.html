@@ -1,0 +1,58 @@
+<!-- 两栏布局 -->
+<!-- 1.float,margin-left 2.float，margin-right  -->
+<!-- <head>
+    <style>
+       .aside{
+           height: 300px;
+           width: 300px;
+           float: left;
+           background-color: aquamarine;
+       }
+       .main{
+           height: 300px;
+           background-color:blueviolet;
+           /* overflow: hidden; */
+        }
+    </style>
+</head>
+<body>
+    <div class="aside"></div>
+    <div class="main"></div>
+</body> -->
+
+<head>
+    <meta content="width=device-width"/>
+    <style>
+      div{
+          height: 500px;
+      }
+      .container{
+          display: flex;
+          border:1px solid black;
+      }
+      .content{
+          flex: 1 1;
+          order: 2;
+          background-color: aqua;
+      }
+      .left{
+          flex: 0 0 200px;
+          order:1;
+          background-color: red
+      }
+      .right{
+          flex:0 0 300px;
+          order:3;
+          background-color: blue
+      }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="content"></div>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+</body>
+
